@@ -1,0 +1,46 @@
+
+body {
+    background: black url("/static/animate/bg.jpg") no-repeat fixed;
+    background-size: cover;
+    overflow: hidden; 
+}
+.navbar-brand {
+    cursor: default;
+}
+.animation {
+    position: absolute;
+}
+marquee {
+    position: fixed;
+}
+marquee:first-child {
+    top: 20%;
+}
+marquee:last-child {
+    bottom: 0;
+}
+legend {
+    text-align: center;
+}
+.butt {
+    text-align: center;
+}
+.form-control-label {
+    font-weight: bold;
+    font-style: oblique;
+    font-size: large;
+}
+.form-control-label:hover{
+    text-decoration: underline;
+}
+@media screen and (max-width:600px) {
+    marquee:last-child {
+        visibility: hidden;
+    }
+}
+
+@media screen and (max-height:500px) {
+    marquee:last-child {
+        visibility: hidden;
+    }
+}

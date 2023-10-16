@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+    <link rel="icon" href="{{ url_for('static', filename='images/favicon.png')}}" type="image/png">
+
+    <!-- bootstrap CDN -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <!-- sweetalert js CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.12.5/dist/sweetalert2.all.min.js"></script>
+
+    {% if title %}
+        <title>Flask - {{ title }}</title>
+    {% else %}
+        <title>Flask</title>
+    {% endif %}
+</head>
+<body>
+    
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <a class="navbar-brand" href="">Navbar</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+          
+          {% block active %}
+            
+          {% endblock active%}
+          </nav>
+    </header>
+    <div class="animation">
+      <marquee scrollamount="16">
+        <img src="../static/animate/birds.gif"  width="16%"/>
+      </marquee>
+      
+      <br>
+      <marquee direction="right" scrollamount="30">
+        <img src="../static/animate/1.gif" width="26%"/>
+        <img src="../static/animate/2.gif" width="22%"/>
+        <img src="../static/animate/3.gif" width="16%"/>
+        <img src="../static/animate/4.gif" width="30%"/>
+      </marquee>
+    </div>
+
+    <main class="container-fluid">
+      <div class="row">
+        <div class="col-md-4"></div>
+
+        <div class="col-md-4">
+
+          {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+              {% for category, message in messages %}
+                <script>
+                  Swal.fire({
+                    title: "{{ category.title() }}!",
+                    text: "{{ message }}",
+                    icon: "{{ category }}",
+                    closeOnConfirm: false
+                  })
+                </script>
+              {% endfor %}
+            {% endif %}
+          {% endwith %}
+
+            {% block content %}
+            {% endblock content %}
+        </div>
+        
+        <div class="col-md-4"></div>
+      </div>
+    </main>
+
+    
+    
+
+    <!-- bootstrap JS CDN -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+</html>
